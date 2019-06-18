@@ -21,7 +21,7 @@
 
 
 ### 自动回复
-在你回来之前，程序可以自动回复你女朋友，延迟在10秒左右，看起来比较真实
+在你回来之前，程序可以自动回复你女朋友，延迟和回复消息的长度正相关，看起来比较真实
 ![image](https://github.com/tangzixiang0304/Shielded_detector/blob/master/introduce_imgs/4.PNG)
 
 
