@@ -22,17 +22,17 @@
 
 ### 自动回复
 在你回来之前，程序可以自动回复你女朋友，延迟在10秒左右，看起来比较真实
-![image](https://github.com/tangzixiang0304/Shielded_detector/blob/master/introduce_imgs/4.PNG）
+![image](https://github.com/tangzixiang0304/Shielded_detector/blob/master/introduce_imgs/4.PNG)
 
 
 ### 关闭条件
 假如你出门了，可以通过给文件传输助手发消息来使程序关闭
-![image](https://github.com/tangzixiang0304/Shielded_detector/blob/master/introduce_imgs/5.PNG）
+![image](https://github.com/tangzixiang0304/Shielded_detector/blob/master/introduce_imgs/5.PNG)
 
 
 ### 运行
 扫码，然后静候佳音吧！
-![image](https://github.com/tangzixiang0304/Shielded_detector/blob/master/introduce_imgs/6.PNG）
+![image](https://github.com/tangzixiang0304/Shielded_detector/blob/master/introduce_imgs/6.PNG)
 
 
 ## 备注
