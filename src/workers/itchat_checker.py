@@ -25,9 +25,8 @@ class itchat_checker(QThread):
 
     def inform_process(self):
         if Settings.is_inform_brothers:
-            for bro_name in Settings.brothers_list:
-                name = itchat.search_friends(name=bro_name)
-                itchat.send_msg(Settings.send_to_brother_message, name)
+            for bro_name in ProgramStatus.brother_username:
+                itchat.send_msg(Settings.send_to_brother_message, bro_name)
                 time.sleep(0.5)
 
     def reply_from_list(self):
@@ -52,12 +51,13 @@ class itchat_checker(QThread):
                     itchat.send_msg(reply_msg, ProgramStatus.gf_username)
                     self.programSignal.send_auto_reply.emit()
                     ProgramStatus.receive_flag = False
-                    time.sleep(10)
+                    time.sleep(len(reply_msg) * 0.5)
 
     def run(self):
         global is_black
         self.check_process()
         self.inform_process()
+        self.reply_process()
 
     def __init__(self, programSignal):
         super().__init__()

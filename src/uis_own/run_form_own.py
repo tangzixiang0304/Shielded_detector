@@ -26,6 +26,7 @@ class Run_form_own(QWidget, Ui_Form):
         self.programSignal.removed_already.connect(self.change_to_replying)
         self.programSignal.send_auto_reply.connect(self.add_send_message)
         self.programSignal.send_test_message_signal.connect(self.add_send_message)
+        self.programSignal.getting_QR.connect(self.drow_qr)
 
     def setupUi(self):
         super().setupUi(self)
