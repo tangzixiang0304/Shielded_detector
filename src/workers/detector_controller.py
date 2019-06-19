@@ -16,10 +16,18 @@ class detector_controller(QThread):
         self.run_ui.show()
         self.worker.start()
 
+    def stop_all(self):
+        self.setting_ui.close()
+        self.run_ui.close()
+        self.worker.exit()
+        self.checker.exit()
+        self.exit()
+
     def connect(self):
         self.programSignal.settings_done.connect(self.setting_form_done)
         self.programSignal.login_success_signal.connect(self.on_login_success)
         self.programSignal.err_no_name.connect(self.no_name_error)
+        self.programSignal.exit_signal.connect(self.stop_all)
 
     def on_login_success(self):
         self.checker.start()

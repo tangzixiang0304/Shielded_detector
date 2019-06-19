@@ -36,7 +36,7 @@ class UI_form_own(QWidget, su.Ui_Form):
         if Settings.is_auto_reply:
             Settings.auto_reply_way_choose = self.auto_reply_way_gui.currentIndex()
             print(Settings.auto_reply_way_choose)
-            Settings.auto_reply_content = reply_text.split("\n")
+            Settings.auto_reply_content = reply_text.strip().split("\n")
 
     def next_2_bind(self):
         self.stackedWidget.setCurrentIndex(3)

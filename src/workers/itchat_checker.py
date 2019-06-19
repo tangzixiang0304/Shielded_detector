@@ -28,6 +28,11 @@ class itchat_checker(QThread):
             for bro_name in ProgramStatus.brother_username:
                 itchat.send_msg(Settings.send_to_brother_message, bro_name)
                 time.sleep(0.5)
+        if Settings.is_sent_to_file_receiver:
+            itchat.send_msg('你女朋友把你从黑名单里拔出来了！你快去哄她！', toUserName='filehelper')
+            time.sleep(0.5)
+            itchat.send_msg('你快去哄她！', toUserName='filehelper')
+            time.sleep(0.5)
 
     def reply_from_list(self):
         first = 0
@@ -38,7 +43,7 @@ class itchat_checker(QThread):
         elif Settings.auto_reply_way_choose == 1:
             for each_reply in Settings.auto_reply_content:
                 yield each_reply
-        elif Settings.auto_reply_content == 2:
+        elif Settings.auto_reply_way_choose == 2:
             index = first
             while True:
                 index = first if index == last else index + 1
@@ -46,12 +51,21 @@ class itchat_checker(QThread):
 
     def reply_process(self):
         if Settings.is_auto_reply:
-            for reply_msg in self.reply_from_list():
+            reply_generator = self.reply_from_list()
+            while True:
                 if ProgramStatus.receive_flag:
-                    itchat.send_msg(reply_msg, ProgramStatus.gf_username)
-                    self.programSignal.send_auto_reply.emit()
-                    ProgramStatus.receive_flag = False
+                    try:
+                        reply_msg = next(reply_generator)
+                    except StopIteration:
+                        self.programSignal.exit_signal.emit()
+                        return
+                    print("间隔：", len(reply_msg) * 0.5)
                     time.sleep(len(reply_msg) * 0.5)
+                    itchat.send_msg(reply_msg, ProgramStatus.gf_username)
+                    self.programSignal.send_auto_reply.emit(reply_msg)
+                    ProgramStatus.receive_flag = False
+        else:
+            self.programSignal.exit_signal.emit()
 
     def run(self):
         global is_black

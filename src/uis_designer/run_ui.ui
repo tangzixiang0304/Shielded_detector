@@ -194,16 +194,6 @@ border:none</string>
     <attribute name="label">
      <string>她把你移出来啦！</string>
     </attribute>
-    <widget class="QListView" name="listView">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>80</y>
-       <width>401</width>
-       <height>341</height>
-      </rect>
-     </property>
-    </widget>
     <widget class="QLabel" name="label_10">
      <property name="geometry">
       <rect>
@@ -215,6 +205,16 @@ border:none</string>
      </property>
      <property name="text">
       <string>自动回复中，你快回来，我一个人应付不来</string>
+     </property>
+    </widget>
+    <widget class="QListWidget" name="listWidget">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>50</y>
+       <width>511</width>
+       <height>391</height>
+      </rect>
      </property>
     </widget>
    </widget>
