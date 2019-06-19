@@ -1,10 +1,10 @@
 from PyQt5.QtCore import QThread
-import sys
 import time
 from src.pass_message.settings import *
 from src.pass_message.program_status import ProgramStatus
 import itchat
 from itchat.content import *
+from pyqrcode import QRCode
 
 
 class itchat_worker(QThread):
@@ -13,20 +13,15 @@ class itchat_worker(QThread):
         print('[INFO] %s' % msg)
 
     def open_QR(self):
-        for get_count in range(10):
-            self.output_info('Getting uuid')
+        self.output_info('Getting uuid')
+        uuid = itchat.get_QRuuid()
+        while uuid is None:
             uuid = itchat.get_QRuuid()
-            while uuid is None:
-                uuid = itchat.get_QRuuid()
-                time.sleep(1)
-            self.output_info('Getting QR Code')
-            if itchat.get_QR(uuid):
-                self.programSignal.getting_QR.emit()
-                break
-            elif get_count >= 9:
-                self.output_info('Failed to get QR Code, please restart the program')
-                sys.exit()
-        self.output_info('Please scan the QR Code')
+            time.sleep(1)
+        self.output_info('Getting QR Code')
+        qrCode = QRCode('https://login.weixin.qq.com/l/' + uuid)
+        qrCode.png("QR.png", scale=10)
+        self.programSignal.getting_QR.emit()
         return uuid
 
     def check_names_exist(self):

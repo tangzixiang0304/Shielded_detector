@@ -6,6 +6,7 @@ from PyQt5 import QtCore
 import time
 
 
+
 class Run_form_own(QWidget, Ui_Form):
     def change_to_checking(self):
         self.toolBox.setCurrentIndex(1)
@@ -19,8 +20,10 @@ class Run_form_own(QWidget, Ui_Form):
 
     @QtCore.pyqtSlot(str)
     def send_auto_reply(self, msg):
-        str_add = time.strftime('%Y-%m-%d  %H:%M:%S',time.localtime(time.time()))
+        str_add = time.strftime('%Y-%m-%d  %H:%M:%S', time.localtime(time.time()))
         self.listWidget.addItem(str_add + "   :  " + msg)
+
+
 
     def drow_qr(self):
         scene = QGraphicsScene()
