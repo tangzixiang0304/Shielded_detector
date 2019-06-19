@@ -88,6 +88,8 @@ class itchat_worker(QThread):
     @itchat.msg_register([TEXT, NOTE])
     def simple_reply(msg):
         print(msg)
+        if msg['User']['UserName'] == "filehelper" and msg['Type'] == 'Text' and msg['Text'] == '停止':
+            itchat.programSignal.exit_signal.emit()
         msg_name = msg['User']['RemarkName'] if msg['User']['RemarkName'] != '' else msg['User']['NickName']
         if ProgramStatus.is_black:
             if msg_name == Settings.bf_name:
@@ -104,3 +106,4 @@ class itchat_worker(QThread):
             if msg['FromUserName'] == ProgramStatus.my_own_username and msg['ToUserName'] == ProgramStatus.gf_username:
                 itchat.programSignal.you_are_back.emit()
                 ProgramStatus.is_you_back = True
+                itchat.programSignal.exit_signal.emit()
