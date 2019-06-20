@@ -2,6 +2,8 @@
 
 **windows版本下载地址**：https://github.com/tangzixiang0304/Shielded_detector/raw/master/dist/detector.exe
 
+运行的时候需要关掉360
+
 
 用来检测拉黑你的女朋友有没有把你取消拉黑
 
